@@ -53,6 +53,17 @@ app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
 app.use('/posts', postRoutes);
 
+// TO CONNECT SERVER WITH CLIENT AFTER DEPLOYMENT.
+app.use(express.static(path.join(__dirName, './client/build')));
+app.get('*', function (_, res) {
+  res.sendFile(
+    path.join(__dirname, './client/build/index.html'),
+    function (err) {
+      res.status(500).send(err);
+    }
+  );
+});
+
 // MONGODB SETUP //
 const PORT = process.env.PORT || 8080;
 mongoose
@@ -65,8 +76,8 @@ mongoose
       console.log(`Server is running at ${PORT}`);
 
       // ADD ONLY ONE TIME WHILE FEEDING MONGODB DATA //
-    //   User.insertMany(users);
-    //   Post.insertMany(posts);
+      //   User.insertMany(users);
+      //   Post.insertMany(posts);
     })
   )
   .catch((err) => {
