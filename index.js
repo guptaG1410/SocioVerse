@@ -53,16 +53,17 @@ app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
 app.use('/posts', postRoutes);
 
-// TO CONNECT SERVER WITH CLIENT AFTER DEPLOYMENT.
-app.use(express.static(path.join(__dirName, './client/build')));
-app.get('*', function (_, res) {
+// Serve static assets in production.
+app.use(express.static('client/build'));
+
+app.get('*', (req, res) =>
   res.sendFile(
-    path.join(__dirName, './client/build/index.html'),
+    path.resolve(__dirName, 'client', 'build', 'index.html'),
     function (err) {
       res.status(500).send(err);
     }
-  );
-});
+  )
+);
 
 // MONGODB SETUP //
 const PORT = process.env.PORT || 8080;
