@@ -58,10 +58,10 @@ app.use(express.static('client/build'));
 
 app.get('*', (req, res) =>
   res.sendFile(
-    path.resolve(__dirName, 'client', 'build', 'index.html'),
-    function (err) {
-      res.status(500).send(err);
-    }
+    path.resolve(__dirName, 'client', 'build', 'index.html')
+    // function (err) {
+    //   res.status(500).send(err);
+    // }
   )
 );
 
