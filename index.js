@@ -63,6 +63,7 @@ app.get('*', function (req, res) {
 
 // MONGODB SETUP //
 const PORT = process.env.PORT || 8080;
+
 mongoose
   .connect(process.env.MONGODB_URL, {
     useNewUrlParser: true,

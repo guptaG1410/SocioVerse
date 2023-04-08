@@ -23,7 +23,7 @@ function UserWidget({ userId, picturePath }) {
 
   const getUser = async () => {
     const getUserResponse = await fetch(
-      `http://localhost:3001/users/${userId}`,
+      `/users/${userId}`,
       {
         method: 'GET',
         headers: { Authorization: `Bearer ${token}` },
